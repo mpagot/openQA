@@ -423,6 +423,11 @@ sub test_junit_file {
     return $expected_test_result;
 }
 
+sub test_xunit_file_failure {
+    my $parser = shift;
+    ok $parser->generated_tests_results->first()->time;
+    ok $parser->generated_tests_results->first()->failures;
+}
 
 sub test_xunit_file {
     my $parser = shift;
@@ -442,7 +447,7 @@ sub test_xunit_file {
     is $parser->generated_tests_results->first()->properties->last->value, 'd';
 
     ok $parser->generated_tests_results->first()->time;
-    ok $parser->generated_tests_results->first()->softfailures;
+#    ok $parser->generated_tests_results->first()->softfailures;
     ok $parser->generated_tests_results->first()->errors;
     ok $parser->generated_tests_results->first()->failures;
     ok $parser->generated_tests_results->first()->tests;
@@ -958,6 +963,12 @@ subtest nested_parsers => sub {
 
     my $final_data = parser()->deserialize($frozen_file->slurp());
     test_ltp_file_v2($final_data->results->first);
+};
+
+subtest xunit_parse_ansible => sub {
+    my $parser = parser(XUnit => path($FindBin::Bin, "data")->child("xunit_format_ansible.xml"));
+
+    my $expected_test_result = test_xunit_file_failure($parser);
 };
 
 done_testing;

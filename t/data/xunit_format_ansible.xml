@@ -1,0 +1,169 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="2" tests="36" time="1292.1225068569183349609375">
+	<testsuite disabled="0" errors="0" failures="2" name="registration" skipped="20" tests="36" time="1292.1225068569183349609375">
+		<testcase classname="/root/qe-sap-deployment/ansible/playbooks/registration.yaml:2" name="[vmhana01] Register: Gathering Facts" time="3.1546361446380615">
+			<system-out>{
+   &quot;warnings&quot;: []</system-out>
+		</testcase>
+		<testcase classname="/root/qe-sap-deployment/ansible/playbooks/registration.yaml:2" name="[vmhana02] Register: Gathering Facts" time="3.2563247680664062">
+			<system-out>{
+    &quot;ansible_facts&quot;: {
+    &quot;changed&quot;: false,
+    &quot;deprecations&quot;: [],
+    &quot;warnings&quot;: []
+}</system-out>
+		</testcase>
+		<testcase classname="/root/qe-sap-deployment/ansible/playbooks/registration.yaml:14" name="[vmhana01] Register: Check for SUSEConnect binary presence _raw_params=which SUSEConnect" time="0.28304028511047363">
+			<system-out>{
+    &quot;changed&quot;: false,
+}</system-out>
+		</testcase>
+		<testcase classname="/root/qe-sap-deployment/ansible/playbooks/registration.yaml:14" name="[vmhana02] Register: Check for SUSEConnect binary presence _raw_params=which SUSEConnect" time="0.36094021797180176">
+			<system-out>{
+}</system-out>
+		</testcase>
+		<testcase classname="/root/qe-sap-deployment/ansible/playbooks/registration.yaml:19" name="[vmhana01] Register: Check for registration _raw_params=SUSEConnect -s" time="0.3833277225494385">
+			<system-out>{
+  ]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/qe-sap-deployment/ansible/playbooks/registration.yaml:19" name="[vmhana02] Register: Check for registration _raw_params=SUSEConnect -s" time="0.3837587833404541">
+			<system-out>{
+    &quot;changed&quot;: false,
+       &quot;[{\&quot;identifier\&quot;:\&quot;SLES_SAP\&quot;,\&quot;version\&quot;:\&quot;12.5\&quot;,\&quot;arch\&quot;:\&quot;x86_64\&quot;,\&quot;status\&quot;:\&quot;Registered\&quot;},{\&quot;identifier\&quot;:\&quot;sle-live-patching\&quot;,\&quot;version\&quot;:\&quot;12.5\&quot;,\&quot;arch\&quot;:\&quot;x86_64\&quot;,\&quot;status\&quot;:\&quot;Registered\&quot;},{\&quot;identifier\&quot;:\&quot;sle-module-adv-systems-management\&quot;,\&quot;version\&quot;:\&quot;12\&quot;,\&quot;arch\&quot;:\&quot;x86_64\&quot;,\&quot;status\&quot;:\&quot;Registered\&quot;},{\&quot;identifier\&quot;:\&quot;sle-module-containers\&quot;,\&quot;version\&quot;:\&quot;12\&quot;,\&quot;arch\&quot;:\&quot;x86_64\&quot;,\&quot;status\&quot;:\&quot;Registered\&quot;},{\&quot;identifier\&quot;:\&quot;sle-module-hpc\&quot;,\&quot;version\&quot;:\&quot;12\&quot;,\&quot;arch\&quot;:\&quot;x86_64\&quot;,\&quot;status\&quot;:\&quot;Registered\&quot;},{\&quot;identifier\&quot;:\&quot;sle-module-legacy\&quot;,\&quot;version\&quot;:\&quot;12\&quot;,\&quot;arch\&quot;:\&quot;x86_64\&quot;,\&quot;status\&quot;:\&quot;Registered\&quot;},{\&quot;identifier\&quot;:\&quot;sle-module-public-cloud\&quot;,\&quot;version\&quot;:\&quot;12\&quot;,\&quot;arch\&quot;:\&quot;x86_64\&quot;,\&quot;status\&quot;:\&quot;Registered\&quot;},{\&quot;identifier\&quot;:\&quot;sle-module-toolchain\&quot;,\&quot;version\&quot;:\&quot;12\&quot;,\&quot;arch\&quot;:\&quot;x86_64\&quot;,\&quot;status\&quot;:\&quot;Registered\&quot;},{\&quot;identifier\&quot;:\&quot;sle-module-web-scripting\&quot;,\&quot;version\&quot;:\&quot;12\&quot;,\&quot;arch\&quot;:\&quot;x86_64\&quot;,\&quot;status\&quot;:\&quot;Registered\&quot;},{\&quot;identifier\&quot;:\&quot;sle-sdk\&quot;,\&quot;version\&quot;:\&quot;12.5\&quot;,\&quot;arch\&quot;:\&quot;x86_64\&quot;,\&quot;status\&quot;:\&quot;Registered\&quot;}]&quot;
+    ]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/qe-sap-deployment/ansible/playbooks/registration.yaml:26" name="[vmhana01] Register: Check for 'Not Registered' not_registered_found={{ 'Not Registered' in repos.stdout }}" time="0.019414663314819336">
+			<system-out>{
+    &quot;ansible_facts&quot;: {
+        &quot;not_registered_found&quot;: false
+    },
+    &quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/qe-sap-deployment/ansible/playbooks/registration.yaml:26" name="[vmhana02] Register: Check for 'Not Registered' not_registered_found={{ 'Not Registered' in repos.stdout }}" time="0.027235746383666992">
+			<system-out>{
+    &quot;ansible_facts&quot;: {
+        &quot;not_registered_found&quot;: false
+    },
+    &quot;changed&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/qe-sap-deployment/ansible/playbooks/registration.yaml:33" name="[vmhana01] Register: Check for registercloudguest _raw_params=which registercloudguest" time="0.18007874488830566">
+			<system-out>{
+    &quot;changed&quot;: false,
+       &quot;/usr/sbin/registercloudguest&quot;
+    ]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/qe-sap-deployment/ansible/playbooks/registration.yaml:33" name="[vmhana02] Register: Check for registercloudguest _raw_params=which registercloudguest" time="0.1846790313720703">
+			<system-out>{
+    &quot;changed&quot;: false,
+       &quot;/usr/sbin/registercloudguest&quot;
+    ]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/qe-sap-deployment/ansible/playbooks/registration.yaml:44" name="[vmhana01] Register: Gather the package facts to check cloud-regionsrv-client in 15sp2 manager=auto" time="0.009421110153198242">
+			<skipped>Conditional result was False</skipped>
+		</testcase>
+		<testcase classname="/root/qe-sap-deployment/ansible/playbooks/registration.yaml:44" name="[vmhana02] Register: Gather the package facts to check cloud-regionsrv-client in 15sp2 manager=auto" time="0.014988422393798828">
+			<skipped>Conditional result was False</skipped>
+		</testcase>
+		<testcase classname="/root/qe-sap-deployment/ansible/playbooks/registration.yaml:51" name="[vmhana01] Register: Softfail for old cloud-regionsrv-client in 15sp2 msg=['[OSADO][softfail] bsc#1217583 IPv6 handling during registration', 'use_suseconnect: {{ use_suseconnect }}']" time="0.012146472930908203">
+			<skipped>Conditional result was False</skipped>
+		</testcase>
+		<testcase classname="/root/qe-sap-deployment/ansible/playbooks/registration.yaml:51" name="[vmhana02] Register: Softfail for old cloud-regionsrv-client in 15sp2 msg=['[OSADO][softfail] bsc#1217583 IPv6 handling during registration', 'use_suseconnect: {{ use_suseconnect }}']" time="0.01658034324645996">
+			<skipped>Conditional result was False</skipped>
+		</testcase>
+		<testcase classname="/root/qe-sap-deployment/ansible/playbooks/registration.yaml:61" name="[vmhana01] Register: Force SUSEConnect usage in case of old cloud-regionsrv-client avoiding 1217583 use_suseconnect=True" time="0.012266397476196289">
+			<skipped>Conditional result was False</skipped>
+		</testcase>
+		<testcase classname="/root/qe-sap-deployment/ansible/playbooks/registration.yaml:61" name="[vmhana02] Register: Force SUSEConnect usage in case of old cloud-regionsrv-client avoiding 1217583 use_suseconnect=True" time="0.016838550567626953">
+			<skipped>Conditional result was False</skipped>
+		</testcase>
+		<testcase classname="/root/qe-sap-deployment/ansible/playbooks/registration.yaml:70" name="[vmhana01] Register: Validate reg code that=['reg_code | length &gt; 0'], fail_msg='reg_code' must not be empty, success_msg='reg_code' is OK" time="0.009263038635253906">
+			<skipped>Conditional result was False</skipped>
+		</testcase>
+		<testcase classname="/root/qe-sap-deployment/ansible/playbooks/registration.yaml:70" name="[vmhana02] Register: Validate reg code that=['reg_code | length &gt; 0'], fail_msg='reg_code' must not be empty, success_msg='reg_code' is OK" time="0.014820098876953125">
+			<skipped>Conditional result was False</skipped>
+		</testcase>
+		<testcase classname="/root/qe-sap-deployment/ansible/playbooks/registration.yaml:86" name="[vmhana01] Register: Pre-run cleaning registercloudguest _raw_params=registercloudguest --clean" time="0.012025117874145508">
+			<skipped>Conditional result was False</skipped>
+		</testcase>
+		<testcase classname="/root/qe-sap-deployment/ansible/playbooks/registration.yaml:86" name="[vmhana02] Register: Pre-run cleaning registercloudguest _raw_params=registercloudguest --clean" time="0.014333486557006836">
+			<skipped>Conditional result was False</skipped>
+		</testcase>
+		<testcase classname="/root/qe-sap-deployment/ansible/playbooks/registration.yaml:95" name="[vmhana01] Register: Run registercloudguest registration _raw_params=registercloudguest --force-new -r &quot;{{ reg_code }}&quot; -e &quot;{{ email_address }}&quot;" time="0.009762048721313477">
+			<skipped>Conditional result was False</skipped>
+		</testcase>
+		<testcase classname="/root/qe-sap-deployment/ansible/playbooks/registration.yaml:95" name="[vmhana02] Register: Run registercloudguest registration _raw_params=registercloudguest --force-new -r &quot;{{ reg_code }}&quot; -e &quot;{{ email_address }}&quot;" time="0.015304088592529297">
+			<skipped>Conditional result was False</skipped>
+		</testcase>
+		<testcase classname="/root/qe-sap-deployment/ansible/playbooks/registration.yaml:112" name="[vmhana01] Register: SUSEConnect registration _raw_params=SUSEConnect -r &quot;{{ reg_code }}&quot; -e &quot;{{ email_address }}&quot;" time="0.010207414627075195">
+			<skipped>Conditional result was False</skipped>
+		</testcase>
+		<testcase classname="/root/qe-sap-deployment/ansible/playbooks/registration.yaml:112" name="[vmhana02] Register: SUSEConnect registration _raw_params=SUSEConnect -r &quot;{{ reg_code }}&quot; -e &quot;{{ email_address }}&quot;" time="0.014671564102172852">
+			<skipped>Conditional result was False</skipped>
+		</testcase>
+		<testcase classname="/root/qe-sap-deployment/ansible/playbooks/registration.yaml:125" name="[vmhana01] Register: Add SLES 12 Advanced Systems Modules _raw_params=SUSEConnect -p sle-module-adv-systems-management/12/{{ ansible_facts['architecture'] }} -r &quot;{{ reg_code }}&quot;" time="0.95827317237854">
+			<system-out>{
+    &quot;attempts&quot;: 1,
+       &quot;Successfully registered system\u001b[0m\u001b[0m&quot;
+    ]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/qe-sap-deployment/ansible/playbooks/registration.yaml:125" name="[vmhana02] Register: Add SLES 12 Advanced Systems Modules _raw_params=SUSEConnect -p sle-module-adv-systems-management/12/{{ ansible_facts['architecture'] }} -r &quot;{{ reg_code }}&quot;" time="1.8026258945465088">
+			<system-out>{
+    &quot;attempts&quot;: 1,
+       &quot;Successfully registered system\u001b[0m\u001b[0m&quot;
+    ]
+}</system-out>
+		</testcase>
+		<testcase classname="/root/qe-sap-deployment/ansible/playbooks/registration.yaml:135" name="[vmhana01] Register: Add SLES 12 public cloud module _raw_params=SUSEConnect -p sle-module-public-cloud/12/{{ ansible_facts['architecture'] }}" time="0.014185905456542969">
+			<skipped>Conditional result was False</skipped>
+		</testcase>
+		<testcase classname="/root/qe-sap-deployment/ansible/playbooks/registration.yaml:135" name="[vmhana02] Register: Add SLES 12 public cloud module _raw_params=SUSEConnect -p sle-module-public-cloud/12/{{ ansible_facts['architecture'] }}" time="0.01864457130432129">
+			<skipped>Conditional result was False</skipped>
+		</testcase>
+		<testcase classname="/root/qe-sap-deployment/ansible/playbooks/registration.yaml:147" name="[vmhana01] Register: Add SLES 15 public cloud module _raw_params=SUSEConnect -p sle-module-public-cloud/{{ ansible_facts['distribution_version'] }}/{{ ansible_facts['architecture'] }}" time="0.013138532638549805">
+			<skipped>Conditional result was False</skipped>
+		</testcase>
+		<testcase classname="/root/qe-sap-deployment/ansible/playbooks/registration.yaml:147" name="[vmhana02] Register: Add SLES 15 public cloud module _raw_params=SUSEConnect -p sle-module-public-cloud/{{ ansible_facts['distribution_version'] }}/{{ ansible_facts['architecture'] }}" time="0.016639232635498047">
+			<skipped>Conditional result was False</skipped>
+		</testcase>
+		<testcase classname="/root/qe-sap-deployment/ansible/playbooks/registration.yaml:162" name="[vmhana01] Register: Ensure cloud-regionsrv-client is on latest version. name=cloud-regionsrv-client, state=latest" time="8.542769193649292">
+			<system-out>{
+    &quot;changed&quot;: true,
+   &quot;update_cache&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/qe-sap-deployment/ansible/playbooks/registration.yaml:162" name="[vmhana02] Register: Ensure cloud-regionsrv-client is on latest version. name=cloud-regionsrv-client, state=latest" time="10.944347143173218">
+			<system-out>{
+    &quot;changed&quot;: true,
+       &quot;&lt;/stream&gt;&quot;
+    ],
+    &quot;update_cache&quot;: false
+}</system-out>
+		</testcase>
+		<testcase classname="/root/qe-sap-deployment/ansible/playbooks/registration.yaml:169" name="[vmhana01] Register: Add additional authenticated modules [SUSEConnnect] _raw_params=SUSEConnect -p {{ item.key }} -r {{ item.value }}" time="0.047727346420288086">
+			<skipped>skipped</skipped>
+		</testcase>
+		<testcase classname="/root/qe-sap-deployment/ansible/playbooks/registration.yaml:169" name="[vmhana02] Register: Add additional authenticated modules [SUSEConnnect] _raw_params=SUSEConnect -p {{ item.key }} -r {{ item.value }}" time="0.05249619483947754">
+			<skipped>skipped</skipped>
+		</testcase>
+		<testcase classname="/root/qe-sap-deployment/ansible/playbooks/registration.yaml:183" name="[vmhana01] Register: Add additional authenticated modules [registercloudguest] _raw_params=registercloudguest -r {{ item.value }}" time="628.3222286701202">
+			<failure message="One or more items failed" type="failure">{
+    &quot;changed&quot;: false,
+    &quot;msg&quot;: &quot;One or more items failed&quot;,
+   ]
+}</failure>
+		</testcase>
+		<testcase classname="/root/qe-sap-deployment/ansible/playbooks/registration.yaml:183" name="[vmhana02] Register: Add additional authenticated modules [registercloudguest] _raw_params=registercloudguest -r {{ item.value }}" time="632.9733667373657">
+			<failure message="One or more items failed" type="failure">{
+    &quot;changed&quot;: false,
+   ]
+}</failure>
+		</testcase>
+	</testsuite>
+</testsuites>
