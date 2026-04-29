@@ -3,11 +3,10 @@
 # Copyright 2014-2021 SUSE LLC
 # SPDX-License-Identifier: GPL-2.0-or-later
 
+use Mojo::Base -signatures;
 use FindBin qw($RealBin);
 use lib "$RealBin/../lib";
 
-use strict;
-use warnings;
 use aliased 'DBIx::Class::DeploymentHandler' => 'DH';
 use OpenQA::Schema;
 use Getopt::Long;
@@ -31,7 +30,7 @@ my $result = GetOptions(
     'force' => \$force
 );
 
-sub usage {
+sub usage ($rc) {
     print "Usage: $0 [flags]\n\n";
     print "  --prepare_upgrades : Create the deployment files used to upgrade the database.\n";
     print "                       Don't forget to increase the version before using this\n";
@@ -43,7 +42,7 @@ sub usage {
     print "  --dir=directory    : Create deployment and migration scripts in this directory.\n";
     print "                       Default is '$default_script_directory'\n";
     print "  --help             : This help message.\n";
-    exit $_[0];
+    exit $rc;
 }
 
 usage 0 if $help;

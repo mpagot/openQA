@@ -4,8 +4,7 @@
 # Copyright 2015-2020 SUSE LLC
 # SPDX-License-Identifier: GPL-2.0-or-later
 
-use strict;
-use warnings;
+use Mojo::Base -signatures;
 
 use FindBin qw($RealBin);
 use lib "$RealBin/../lib";
@@ -23,7 +22,7 @@ my $secret = '';
 my $user = $ARGV[0];
 my $help;
 
-sub usage {
+sub usage ($rc) {
     print "Usage: $0 user [options]\n\n";
     print "  --email     : Email address.\n";
     print "  --nickname  : Nickname.\n";
@@ -31,8 +30,8 @@ sub usage {
     print "  --key       : API key (will be randomly generated if not set).\n";
     print "  --secret    : API secret (will be randomly generated if not set).\n";
     print "  user        : User ID (e.g. OpenID URL).\n";
-    print "usage: $_[0]\n";
-    exit $_[0];
+    print "usage: $rc\n";
+    exit $rc;
 }
 
 # need to count this *before* calling GetOptions
