@@ -1807,65 +1807,56 @@ the workers create their own instance directories.
 ## Terms and variables for certain directories used by openQA and isotovideo
 
 - the "base directory"
-
   - by default `/var/lib`
-
   - configurable via environment variable `OPENQA_BASEDIR`
-
   - referred as `$basedir` within openQA
 
 - the "project directory"
-
   - defined as `$basedir/openqa`, by default `/var/lib/openqa`
-
   - referred as `$prjdir` within openQA
 
 - the "archive directory"
-
   - defined as `$prjdir/openqa`, by default `/var/lib/openqa/archive`
-
   - referred as `$archivedir` within openQA
 
-- the "share directory": contains directories shared between web UI and (remote) workers
-
+- the "share directory": contains directories shared between web UI and (remote)
+  workers
   - defined as `$prjdir/share`, by default `/var/lib/openqa/share`
-
   - referred as `$sharedir` within openQA
 
 - the "test case directory": contains a test distribution
-
   - by default `$sharedir/tests/$distri` or `$sharedir/tests/$distri-$version`
-
-  - configurable via the test variable `CASEDIR` (see backend variables documentation) - this default is provided by openQA; when starting isotovideo manually the `CASEDIR` variable **must** be
-    initialized by hand
-
-  - relative paths are relative to `$sharedir/tests`; to avoid symlinking, use e.g. `CASEDIR=opensuse` for `$sharedir/tests/opensuse` despite differing `DISTRI`
-
+  - configurable via the test variable `CASEDIR` (see backend variables
+    documentation) - this default is provided by openQA; when starting
+    isotovideo manually the `CASEDIR` variable **must** be initialized by hand
+  - relative paths are relative to `$sharedir/tests`; to avoid symlinking, use
+    e.g. `CASEDIR=opensuse` for `$sharedir/tests/opensuse` despite differing
+    `DISTRI`
   - specifying a Git URL as `CASEDIR` is also possible; with `git_auto_clone`
     enabled, openQA will create a checkout of the repository under the mentioned
     default location if it does not already exist
-
     - no de-duplication is done, e.g.
       `CASEDIR=https://github.com/…/…-distri-opensuse.git` will lead to a
       checkout under `$sharedir/tests/opensuse` with `DISTRI=opensuse` and a
       separate checkout under `$sharedir/tests/microos` with `DISTRI=microos`
-
       - separate checkouts can be avoided by manual symlinking, e.g. a symlink
         for `microos` pointing to `opensuse` will prevent the duplicate
         checkouts in this example
+  - might contain the sub directory `lib` for placing Perl modules used by the
+    tests
 
-  - might contain the sub directory `lib` for placing Perl modules used by the tests - the "product directory": contains the test schedule (`main.pm`) for a certain product within a test distribution
-
+- the "product directory": contains the test schedule (`main.pm`) for a certain
+  product within a test distribution
   - by default identical to the "test case directory"
+  - usually a directory `products/$distri` within the "test case directory"
+  - configurable via the test variable `PRODUCTDIR` (see backend variables
+    documentation)
 
-  - usually a directory `products/$distri` within the "test case directory" - configurable via the test variable `PRODUCTDIR` (see backend variables documentation)
-
-- the "needles directory": contains reference images for a certain product within a test distribution
-
+- the "needles directory": contains reference images for a certain product
+  within a test distribution
   - by default `$PRODUCTDIR/needles`
-
-  - configurable via the test variable `NEEDLES_DIR` (see backend variables documentation)
-
+  - configurable via the test variable `NEEDLES_DIR` (see backend variables
+    documentation)
   - specifying a Git URL as `NEEDLES_DIR` is also possible; with
     `git_auto_clone` enabled, openQA will create a checkout of the repository
     under the mentioned default location if it does not already exist
