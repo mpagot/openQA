@@ -858,6 +858,9 @@ checkout_needles_sha = yes|no
 
 - `git_auto_update` controls automatic test/needle updating when scheduling tests.
 - `git_auto_clone` controls the automatic cloning of repos referenced by `CASEDIR` and  `NEEDLES_DIR`, at job schedule time.
+  Check out the
+  [section about directories](Installing.md#terms-and-variables-for-certain-directories-used-by-openqa-and-isotovideo)
+  for where the repositories will be stored.
 - `checkout_needles_sha` controls the feature whereby, when a job viewed in the web UI has
   variables indicating the needles came from a specific Git repository and ref, openQA will
   attempt to clone that ref and display the needles from it.
@@ -1838,6 +1841,19 @@ the workers create their own instance directories.
 
   - relative paths are relative to `$sharedir/tests`; to avoid symlinking, use e.g. `CASEDIR=opensuse` for `$sharedir/tests/opensuse` despite differing `DISTRI`
 
+  - specifying a Git URL as `CASEDIR` is also possible; with `git_auto_clone`
+    enabled, openQA will create a checkout of the repository under the mentioned
+    default location if it does not already exist
+
+    - no de-duplication is done, e.g.
+      `CASEDIR=https://github.com/…/…-distri-opensuse.git` will lead to a
+      checkout under `$sharedir/tests/opensuse` with `DISTRI=opensuse` and a
+      separate checkout under `$sharedir/tests/microos` with `DISTRI=microos`
+
+      - separate checkouts can be avoided by manual symlinking, e.g. a symlink
+        for `microos` pointing to `opensuse` will prevent the duplicate
+        checkouts in this example
+
   - might contain the sub directory `lib` for placing Perl modules used by the tests - the "product directory": contains the test schedule (`main.pm`) for a certain product within a test distribution
 
   - by default identical to the "test case directory"
@@ -1850,7 +1866,21 @@ the workers create their own instance directories.
 
   - configurable via the test variable `NEEDLES_DIR` (see backend variables documentation)
 
+  - specifying a Git URL as `NEEDLES_DIR` is also possible; with
+    `git_auto_clone` enabled, openQA will create a checkout of the repository
+    under the mentioned default location if it does not already exist
+
 ### Further notes
+- The mentioned `git_auto_clone` setting is part of the general
+  [Git support](Installing.md#setting-up-git-support) and works best if used
+  consistently. If e.g. only specifying a Git URL for `CASEDIR` but not for
+  `NEEDLES_DIR`, only the former will be cloned and needles will be missing if
+  they are provided by a separate repository.
+
+  - As mentioned, there is no de-duplication of checkouts. So when cloning a job
+    with e.g. `CASEDIR=https://github.com/…/…-distri-opensuse.git` and
+    `DISTRI=microos` but no `NEEDLES_DIR`, needles will be missing despite being
+    present for `DISTRI=opensuse`.
 
 - Setting the test variables has only an influence on os-autoinst. The web UI on the other hand always relies
   on the directory structure described above. For the exact details how these paths are computed by the web UI
