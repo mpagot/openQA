@@ -263,7 +263,7 @@ for quicker installation of all Perl modules.
 
 For openSUSE you need the packages `openQA` and `os-autoinst`.
 That should be everything necessary to run an openQA instance. For more
-details check \<\<Installing.asciidoc#\_installation,Installation\>.
+details check [Installation](Installing.md#installation).
 
 If you have to manually install packages, look into the `dependencies.yaml`
 file or the spec file, e.g. `dist/rpm/openQA.spec` (or `dist/rpm/*.spec` in general). You can leave out sections starting with `test_requires` for example.
@@ -300,8 +300,8 @@ for a container with all dependencies.
 The following explains in detail what is necessary to develop openQA code.
 
 For a setup with containers you can check out the
-\<\<Contributing.asciidoc#quick-container-development-setup,Quick container
-development setup\>\> below with a complete list of instructions.
+[Quick container development setup](#quick-container-development-setup)
+below with a complete list of instructions.
 
 Otherwise follow the detailed steps below. This setup is applicable to a
 container environment as well as without.
