@@ -1856,7 +1856,7 @@ the workers create their own instance directories.
   on the directory structure described above. For the exact details how these paths are computed by the web UI
   have a look at `lib/OpenQA/Utils.pm`.
 
-- When enabling the worker cache parts of the usual "share directory" are located in the specified cache
+- When enabling the worker cache, parts of the usual "share directory" are located in the specified cache
   directory on the worker host.
 
 # Automatic installation of the operating systems for openQA machines
