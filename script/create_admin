@@ -30,7 +30,6 @@ sub usage ($rc) {
     print "  --key       : API key (will be randomly generated if not set).\n";
     print "  --secret    : API secret (will be randomly generated if not set).\n";
     print "  user        : User ID (e.g. OpenID URL).\n";
-    print "usage: $rc\n";
     exit $rc;
 }
 
