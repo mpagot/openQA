@@ -251,7 +251,7 @@ consecutive numbers for the `--instance` parameter:
 
 You have to put your tests under `data/tests` directory and ISOs under
 `data/factory/iso` directory. For testing openSUSE, follow
-[this guide](https://github.com/os-autoinst/openQA/blob/master/docs/GettingStarted.asciidoc#testing-opensuse-or-fedora).
+[this guide](GettingStarted.md#get-testing).
 
 The test distribution might have additional dependencies which need to be
 installed into the worker container before tests can run. To install those

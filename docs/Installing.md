@@ -1273,7 +1273,7 @@ several hosts in a single site (that is remote from the main openQA webui
 instance) it results in downloading the same assets several times. In
 such case, one can setup local cache on their own (without using
 openqa-worker-cacheservice service) and share it with workers using
-some network filesystem (see [Installing.asciidoc#Configuring remote workers](Installing.md#Configuring remote workers)
+some network filesystem (see [Configuring remote workers](Installing.md#configuring_remote_workers)
 section above).
 Such setups can use `SYNC_ASSETS_HOOK` in
 [the web UI configuration](GettingStarted.md#configuration) to ensure the
