@@ -829,18 +829,18 @@ needs, have a look at the
 [Cleanup of assets, results and other data](UsersGuide.md#cleanup)
 section.
 
-## Setting up git support
+## Setting up Git support
 
-If your tests and needles are stored in git, openQA can perform various operations:
+If your tests and needles are stored in Git, openQA can perform various operations:
 
 - Automatically commit needles created in the web UI editor back to the repository
 
 - Automatically update the repository when scheduling tests
 
-- Update the server's tests and needles from git repos specified in a job's `CASEDIR` and  `NEEDLES_DIR` variables
+- Update the server's tests and needles from Git repos specified in a job's `CASEDIR` and  `NEEDLES_DIR` variables
 
 - Attempt to have the web UI display the correct needles each job was executed with via
-  temporary git checkouts, based on its variables
+  temporary Git checkouts, based on its variables
 
 By default, cloning based on `CASEDIR` and `NEEDLES_DIR` is enabled, but the other
 features are disabled. To control these features, you can use these config settings:
@@ -858,8 +858,11 @@ checkout_needles_sha = yes|no
 
 - `git_auto_update` controls automatic test/needle updating when scheduling tests.
 - `git_auto_clone` controls the automatic cloning of repos referenced by `CASEDIR` and  `NEEDLES_DIR`, at job schedule time.
+  Check out the
+  [section about directories](Installing.md#terms-and-variables-for-certain-directories-used-by-openqa-and-isotovideo)
+  for where the repositories will be stored.
 - `checkout_needles_sha` controls the feature whereby, when a job viewed in the web UI has
-  variables indicating the needles came from a specific git repository and ref, openQA will
+  variables indicating the needles came from a specific Git repository and ref, openQA will
   attempt to clone that ref and display the needles from it.
 
 ### Configuration of automatic needle commit feature
@@ -905,7 +908,7 @@ do_cleanup = yes
 ```
 
 If you clone the needle repository via HTTP, you can still make `geekotest`
-able to push via SSH with a git configuration. For GitHub, it would look like
+able to push via SSH with a Git configuration. For GitHub, it would look like
 this:
 
 ``` sh
@@ -922,7 +925,7 @@ Or put it in the `~/.gitconfig` file manually:
   pushInsteadOf = https://github.com/
 ```
 
-You can apply the same kind of thing for any other git hosting provider.
+You can apply the same kind of thing for any other Git hosting provider.
 
 ## Referer settings to auto-mark important jobs
 
@@ -1804,59 +1807,77 @@ the workers create their own instance directories.
 ## Terms and variables for certain directories used by openQA and isotovideo
 
 - the "base directory"
-
   - by default `/var/lib`
-
   - configurable via environment variable `OPENQA_BASEDIR`
-
   - referred as `$basedir` within openQA
 
 - the "project directory"
-
   - defined as `$basedir/openqa`, by default `/var/lib/openqa`
-
   - referred as `$prjdir` within openQA
 
 - the "archive directory"
-
   - defined as `$prjdir/openqa`, by default `/var/lib/openqa/archive`
-
   - referred as `$archivedir` within openQA
 
-- the "share directory": contains directories shared between web UI and (remote) workers
-
+- the "share directory": contains directories shared between web UI and (remote)
+  workers
   - defined as `$prjdir/share`, by default `/var/lib/openqa/share`
-
   - referred as `$sharedir` within openQA
 
 - the "test case directory": contains a test distribution
-
   - by default `$sharedir/tests/$distri` or `$sharedir/tests/$distri-$version`
+  - configurable via the test variable `CASEDIR` (see backend variables
+    documentation) - this default is provided by openQA; when starting
+    isotovideo manually the `CASEDIR` variable **must** be initialized by hand
+  - relative paths are relative to `$sharedir/tests`; to avoid symlinking, use
+    e.g. `CASEDIR=opensuse` for `$sharedir/tests/opensuse` despite differing
+    `DISTRI`
+  - specifying a Git URL as `CASEDIR` is also possible; with `git_auto_clone`
+    enabled, openQA will create a checkout of the repository under the mentioned
+    default location if it does not already exist
+    - no de-duplication is done, e.g.
+      `CASEDIR=https://github.com/…/…-distri-opensuse.git` will lead to a
+      checkout under `$sharedir/tests/opensuse` with `DISTRI=opensuse` and a
+      separate checkout under `$sharedir/tests/microos` with `DISTRI=microos`
+      - separate checkouts can be avoided by manual symlinking, e.g. a symlink
+        for `microos` pointing to `opensuse` will prevent the duplicate
+        checkouts in this example
+  - might contain the sub directory `lib` for placing Perl modules used by the
+    tests
 
-  - configurable via the test variable `CASEDIR` (see backend variables documentation) - this default is provided by openQA; when starting isotovideo manually the `CASEDIR` variable **must** be
-    initialized by hand
-
-  - relative paths are relative to `$sharedir/tests`; to avoid symlinking, use e.g. `CASEDIR=opensuse` for `$sharedir/tests/opensuse` despite differing `DISTRI`
-
-  - might contain the sub directory `lib` for placing Perl modules used by the tests - the "product directory": contains the test schedule (`main.pm`) for a certain product within a test distribution
-
+- the "product directory": contains the test schedule (`main.pm`) for a certain
+  product within a test distribution
   - by default identical to the "test case directory"
+  - usually a directory `products/$distri` within the "test case directory"
+  - configurable via the test variable `PRODUCTDIR` (see backend variables
+    documentation)
 
-  - usually a directory `products/$distri` within the "test case directory" - configurable via the test variable `PRODUCTDIR` (see backend variables documentation)
-
-- the "needles directory": contains reference images for a certain product within a test distribution
-
+- the "needles directory": contains reference images for a certain product
+  within a test distribution
   - by default `$PRODUCTDIR/needles`
-
-  - configurable via the test variable `NEEDLES_DIR` (see backend variables documentation)
+  - configurable via the test variable `NEEDLES_DIR` (see backend variables
+    documentation)
+  - specifying a Git URL as `NEEDLES_DIR` is also possible; with
+    `git_auto_clone` enabled, openQA will create a checkout of the repository
+    under the mentioned default location if it does not already exist
 
 ### Further notes
+- The mentioned `git_auto_clone` setting is part of the general
+  [Git support](Installing.md#setting-up-git-support) and works best if used
+  consistently. If e.g. only specifying a Git URL for `CASEDIR` but not for
+  `NEEDLES_DIR`, only the former will be cloned and needles will be missing if
+  they are provided by a separate repository.
+
+  - As mentioned, there is no de-duplication of checkouts. So when cloning a job
+    with e.g. `CASEDIR=https://github.com/…/…-distri-opensuse.git` and
+    `DISTRI=microos` but no `NEEDLES_DIR`, needles will be missing despite being
+    present for `DISTRI=opensuse`.
 
 - Setting the test variables has only an influence on os-autoinst. The web UI on the other hand always relies
   on the directory structure described above. For the exact details how these paths are computed by the web UI
   have a look at `lib/OpenQA/Utils.pm`.
 
-- When enabling the worker cache parts of the usual "share directory" are located in the specified cache
+- When enabling the worker cache, parts of the usual "share directory" are located in the specified cache
   directory on the worker host.
 
 # Automatic installation of the operating systems for openQA machines
