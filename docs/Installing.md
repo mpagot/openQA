@@ -829,18 +829,18 @@ needs, have a look at the
 [Cleanup of assets, results and other data](UsersGuide.md#cleanup)
 section.
 
-## Setting up git support
+## Setting up Git support
 
-If your tests and needles are stored in git, openQA can perform various operations:
+If your tests and needles are stored in Git, openQA can perform various operations:
 
 - Automatically commit needles created in the web UI editor back to the repository
 
 - Automatically update the repository when scheduling tests
 
-- Update the server's tests and needles from git repos specified in a job's `CASEDIR` and  `NEEDLES_DIR` variables
+- Update the server's tests and needles from Git repos specified in a job's `CASEDIR` and  `NEEDLES_DIR` variables
 
 - Attempt to have the web UI display the correct needles each job was executed with via
-  temporary git checkouts, based on its variables
+  temporary Git checkouts, based on its variables
 
 By default, cloning based on `CASEDIR` and `NEEDLES_DIR` is enabled, but the other
 features are disabled. To control these features, you can use these config settings:
@@ -859,7 +859,7 @@ checkout_needles_sha = yes|no
 - `git_auto_update` controls automatic test/needle updating when scheduling tests.
 - `git_auto_clone` controls the automatic cloning of repos referenced by `CASEDIR` and  `NEEDLES_DIR`, at job schedule time.
 - `checkout_needles_sha` controls the feature whereby, when a job viewed in the web UI has
-  variables indicating the needles came from a specific git repository and ref, openQA will
+  variables indicating the needles came from a specific Git repository and ref, openQA will
   attempt to clone that ref and display the needles from it.
 
 ### Configuration of automatic needle commit feature
@@ -905,7 +905,7 @@ do_cleanup = yes
 ```
 
 If you clone the needle repository via HTTP, you can still make `geekotest`
-able to push via SSH with a git configuration. For GitHub, it would look like
+able to push via SSH with a Git configuration. For GitHub, it would look like
 this:
 
 ``` sh
@@ -922,7 +922,7 @@ Or put it in the `~/.gitconfig` file manually:
   pushInsteadOf = https://github.com/
 ```
 
-You can apply the same kind of thing for any other git hosting provider.
+You can apply the same kind of thing for any other Git hosting provider.
 
 ## Referer settings to auto-mark important jobs
 
