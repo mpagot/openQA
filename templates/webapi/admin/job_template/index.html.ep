@@ -71,7 +71,7 @@
         <p>
             A job template is a combination of machine, product and test suite settings. These combination are used
             to produce actual jobs within a certain job group. Check out
-            <a href="http://open.qa/docs/#_using_job_templates_to_automate_jobs_creation" target="blank">the documentation</a>
+            <a href="https://open.qa/docs/#using-job-templates-to-automate-jobs-creation" target="blank">the documentation</a>
             for more details.
         </p>
         % if (!$force_yaml_editor) {
@@ -182,7 +182,7 @@ scenarios:
             <div class="row">
                 <div class="col-sm-5 editor-yaml-guide" style="display: none">
                     <p class="buttons">
-                        <a href="http://open.qa/docs/#_job_group_editor_gh2111" target="blank" class="btn btn-light">
+                        <a href="https://open.qa/docs/#job-group-editor-gh" target="blank" class="btn btn-light">
                             <i class="fa-solid fa-book"></i><span>YAML editor documentation</span>
                         </a>
                     </p>

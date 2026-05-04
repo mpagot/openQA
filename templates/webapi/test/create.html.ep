@@ -49,7 +49,7 @@
     <div class="col-md-6">
       <label for="create-tests-casedir" class="form-label"><strong>Test repository (<code>CASEDIR</code>)</strong></label>
       <%= help_popover('Test repository' => '<p>Specifies the URL of the Git repository containing tests. May also be left blank or point to a local directory.</p>',
-        'https://open.qa/docs/#_triggering_tests_based_on_an_any_remote_git_refspec_or_open_github_pull_request', 'the documentation', 'left') %>
+        'https://open.qa/docs/#triggering-tests-based-on-an-any-remote-git-refspec-or-open-github-pull-request', 'the documentation', 'left') %>
       <input type="text" class="form-control" id="create-tests-casedir" value="<%= $preset->{casedir} // '' %>" name="CASEDIR">
     </div>
     <div class="col-md-6">
@@ -62,7 +62,7 @@
       <label for="create-tests-settings" class="form-label"><strong>Additional settings</strong></label>
       <%= help_popover('Test repository' => '<p>Specifies additional settings as newline-separated <code>KEY=value</code>-pairs that will be assigned to each job. ' .
         'Some settings also influence the job creation itself, e.g. <code>_OBSOLETE</code>.</p>',
-        'https://open.qa/docs/#_spawning_multiple_jobs_based_on_templates_isos_post', 'the documentation', 'left') %>
+        'https://open.qa/docs/#spawning-multiple-jobs-based-on-templates---isos-post', 'the documentation', 'left') %>
       <textarea class="form-control key-value-pairs" id="create-tests-settings" rows="15"></textarea>
     </div>
     <div class="col-md-6">

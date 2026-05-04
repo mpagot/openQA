@@ -121,4 +121,4 @@ helm install openqa openqa/ -f my_values.yaml
 ### Worker
 
 The worker requires some basic configuration, as described in the
-[documentation](http://open.qa/docs/#_run_openqa_workers).
+[documentation](http://open.qa/docs/#run-openqa-workers).

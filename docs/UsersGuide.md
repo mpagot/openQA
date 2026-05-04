@@ -1896,11 +1896,11 @@ and have a traceable documentation of the actions taken.
   to handle flaky issues and even automatically retrigger according tests
 
 - In case of known sporadic issues that can not be fixed quickly consider
-  automatic retries of jobs <http://open.qa/docs/#_automatic_retries_of_jobs>
+  [automatic retries of jobs](WritingTests.md#automatic-retries-of-jobs).
 
 - In case of known non-sporadic test issues that can not be fixed quickly
-  consider overwriting the result of jobs
-  <http://open.qa/docs/#_overwrite_result_of_job>
+  consider
+  [overwriting the result of jobs](UsersGuide.md#overwrite-result-of-job).
 
 - To quickly label and - as desired - restart multiple jobs consider using the
   command line application `openqa-label-all`. Call `openqa-label-all --help`

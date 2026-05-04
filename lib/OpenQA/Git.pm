@@ -141,7 +141,7 @@ sub commit ($self, $args = undef) {
                     and $e->stderr =~ m/Authentication failed for .http/)
                 {
                     $msg
-                      .= '. See https://open.qa/docs/#_setting_up_git_support on how to setup git support and possibly push via ssh.';
+                      .= '. See https://open.qa/docs/#setting-up-git-support on how to setup git support and possibly push via ssh.';
                     $e->msg($msg);
                 }
             }

@@ -2,6 +2,6 @@ paths:
   'assets/stylesheets/**':
     - Consider providing screenshots in a PR comment to show the difference visually
   'docs/*.md':
-    - Consider generating documentation locally to verify it is rendered correctly. See https://open.qa/docs/#_making_documentation_changes
+    - Consider generating documentation locally to verify it is rendered correctly. See https://open.qa/docs/#making-documentation-changes
   'external/**':
     - Consider doing this change in the upstream repository directly, see external/os-autoinst-common/README.md

@@ -31,7 +31,7 @@ Try out running tests with openQA in a browser in
 [our Codespace](https://codespaces.new/os-autoinst/openQA?quickstart=1).
 See also: [GitHub Codespaces documentation](https://docs.github.com/en/codespaces)
 
-See [openQA in a browser](https://open.qa/docs/#_openqa_in_a_browser) for
+See [openQA in a browser](https://open.qa/docs/#openqa-in-a-browser) for
 documentation on how to use it.
 
 # Contributing
