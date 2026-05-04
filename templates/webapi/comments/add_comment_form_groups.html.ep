@@ -58,7 +58,7 @@
           % }
           <br>
           %= include_branding 'commenting_tools';
-          %= help_popover 'Help for comments' => $help_text, 'https://open.qa/docs/#_use_of_the_web_interface' => 'the documentation'
+          %= help_popover 'Help for comments' => $help_text, 'https://open.qa/docs/#use-of-the-web-interface' => 'the documentation'
         </span>
     </div>
 </div>

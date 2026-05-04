@@ -130,7 +130,7 @@
                                 <span class="prio-value"><%= $job->priority %></span>
                             % }
                         % }
-                        &nbsp;<a href="https://open.qa/docs/#_job_groups_2" target="_blank"><i class="fa-regular fa-circle-question" data-bs-toggle="tooltip" data-bs-title="Jobs with lower priority values are scheduled earlier (default: 50)"></i></a>
+                        &nbsp;<a href="https://open.qa/docs/#job-groups-1" target="_blank"><i class="fa-regular fa-circle-question" data-bs-toggle="tooltip" data-bs-title="Jobs with lower priority values are scheduled earlier (default: 50)"></i></a>
                     </div>
                 % }
                 % if ($worker) {
@@ -187,7 +187,7 @@
                             </ul>
                             All rules are applied recursively. Advanced restarting options allow changing the behavior, e.g. excluding parents and $ok_results_explanation children. You can open the menu of advanced restarting options by clicking on the triangle icon
                             on the left side of the <em>$restart_text</em> button for jobs with dependencies.",
-                            'https://open.qa/docs/#_handling_of_related_jobs_on_failure_cancellation_restart', 'documentation', 'bottom', class => 'help_popover fa-solid fa-circle-question btn btn-secondary');
+                            'https://open.qa/docs/#handling-of-related-jobs-on-failure--cancellation--restart', 'documentation', 'bottom', class => 'help_popover fa-solid fa-circle-question btn btn-secondary');
                         %>
                       </div>
                     % }

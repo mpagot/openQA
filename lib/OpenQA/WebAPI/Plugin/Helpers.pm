@@ -171,7 +171,7 @@ sub register ($self, $app, $config) {
             $c->help_popover(
                 'Help for the <em>TODO</em>-filter',
                 '<p>Shows only jobs that need to be labeled for the black review badge to show up</p>',
-                'http://open.qa/docs/#_review_badges',
+                'https://open.qa/docs/#review-badges',
                 'documentation about review badges'
             );
         });

@@ -789,7 +789,7 @@ sub cluster_jobs ($self, @args) {
                 die "Direct parent $parent_id needs to be cloned as well for the directly chained dependency "
                   . 'to work correctly. It is generally better to restart the parent which will restart all children '
                   . 'as well. Check out the '
-                  . '<a href="https://open.qa/docs/#_handling_of_related_jobs_on_failure_cancellation_restart">'
+                  . '<a href="https://open.qa/docs/#handling-of-related-jobs-on-failure--cancellation--restart">'
                   . "documentation</a> for more information.\n"
                   if $no_directly_chained_parent;
                 $p->cluster_jobs(jobs => $jobs, skip_children => 1, cancelmode => $cancelmode);
