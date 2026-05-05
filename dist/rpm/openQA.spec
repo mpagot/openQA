@@ -47,7 +47,12 @@
 %bcond_with devel_package
 %bcond_with munin_package
 %else
+# exclude devel sub package on Leap < 16 as not all develoment dependencies are present anymore
+%if 0%{?is_opensuse} && 0%{?suse_version} < 1600
+%bcond_with devel_package
+%else
 %bcond_without devel_package
+%endif
 %bcond_without munin_package
 %endif
 # runtime requirements that also the testsuite needs
