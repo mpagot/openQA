@@ -90,11 +90,11 @@
 %define qemu qemu
 %endif
 # The following line is generated from dependencies.yaml
-%define style_check_requires ShellCheck pandoc perl(Code::TidyAll) perl(Perl::Critic) perl(Perl::Critic::Community) perl(Pod::Markdown) perl(Test::Perl::Critic) python3-gitlint python3-yamllint shfmt
+%define style_check_requires ShellCheck perl(Code::TidyAll) perl(Perl::Critic) perl(Perl::Critic::Community) perl(Pod::Markdown) perl(Test::Perl::Critic) python3-gitlint python3-yamllint shfmt
 # The following line is generated from dependencies.yaml
 %define cover_requires perl(Devel::Cover) perl(Devel::Cover::Report::Codecovbash)
 # The following line is generated from dependencies.yaml
-%define devel_no_selenium_requires %build_requires %cover_requires %qemu %style_check_requires %test_requires curl make perl(Perl::Tidy) perl(Test::CheckGitStatus) postgresql-devel rsync sudo tar xorg-x11-fonts
+%define devel_no_selenium_requires %build_requires %cover_requires %qemu %style_check_requires %test_requires curl make pandoc perl(Perl::Tidy) perl(TAP::Harness::JUnit) perl(Test::CheckGitStatus) postgresql-devel python3-weasyprint rsync sudo tar xorg-x11-fonts
 # The following line is generated from dependencies.yaml
 %define devel_requires %devel_no_selenium_requires chromedriver
 
