@@ -60,6 +60,7 @@ sub parse ($self, $json) {
         my $details = {result => $result->{result}};
         my $text_fn = "IPA-$t_name.txt";
         my $content = join "\n", $t_name, $result->{result};
+        $content .= "\nlog:\t$res->{test}->{log}" if (defined $res->{test}->{log});
 
         $details->{text} = $text_fn;
         $details->{title} = $t_name;
