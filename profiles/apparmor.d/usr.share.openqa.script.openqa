@@ -8,6 +8,7 @@
   #include <abstractions/nameservice>
   #include <abstractions/perl>
 
+  /dev/tty r,
   /etc/gitconfig r,
   /etc/openqa/client.conf r,
   /etc/openqa/client.conf.d/ r,
@@ -109,6 +110,7 @@
     #include <abstractions/nameservice>
 
     /{usr/,}etc/ssh/ssh_config r,
+    /{usr/,}etc/ssh/ssh_config.d/ r,
     /{usr/,}etc/ssh/ssh_config.d/** r,
     /etc/ssh/ssh_known_hosts r,
     /etc/ssl/openssl.cnf r,
@@ -134,6 +136,7 @@
   /opt/openqa-trigger-from-obs/*:*/*products* rw,
   /opt/openqa-trigger-from-obs/*:*/*/*products* rw,
 
+  /opt/os-autoinst-scripts/ r,
   /opt/os-autoinst-scripts/** rix,
   /usr/share/openqa/script/openqa-cli px,
   /usr/share/openqa/script/openqa-clone-job mrix,
