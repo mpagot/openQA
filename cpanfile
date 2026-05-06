@@ -121,6 +121,7 @@ on 'develop' => sub {
     requires 'Perl::Critic::Community';
     requires 'Perl::Tidy', '== 20260204.0.0';
     requires 'Pod::Markdown';
+    requires 'TAP::Harness::JUnit';
     requires 'Test::CheckGitStatus';
     requires 'Test::Perl::Critic';
 
