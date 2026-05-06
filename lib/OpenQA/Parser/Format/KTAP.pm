@@ -9,6 +9,14 @@ use Carp qw(confess);
 use OpenQA::Parser::Result::OpenQA;
 use TAP::Parser;
 
+# Matches a selftests group header comment, e.g. "# selftests: cgroup: test_core".
+# The negative lookahead rejects inner status comments like "# selftests: test [PASS]".
+use constant SELFTESTS_GROUP_COMMENT_RE => qr/^#\s*selftests:\s+(?!.*\[[A-Z]+\]\s*$)[^:]+:\s+(.*\S)\s*$/;
+
+# Matches the description field of a TAP test-type summary line,
+# e.g. "selftests: cgroup: test_core" (no leading "# ").
+use constant SELFTESTS_GROUP_SUMMARY_RE => qr/^selftests:\s+[^:]+:\s+.*\S\s*$/;
+
 has [qw(test)];
 has state => sub { return {steps => undef, m => 0} };
 
@@ -21,8 +29,8 @@ sub _testgroup_init ($self, $line) {
         $self->generated_tests_results->add(OpenQA::Parser::Result::OpenQA->new($steps));
     }
 
-    my ($group_name) = $line =~ /^#\s*selftests:\s+(.*)/;
-    my $sanitized_group_name = "selftests: $group_name";
+    my ($group_name) = $line =~ SELFTESTS_GROUP_COMMENT_RE;
+    my $sanitized_group_name = $group_name;
     $sanitized_group_name =~ s/[\/.]/_/g;
     $sanitized_group_name =~ s/\s//g;
 
@@ -130,14 +138,14 @@ sub parse ($self, $KTAP) {
         next if $result->type eq 'version' || $result->type eq 'plan';
 
         if ($result->type eq 'comment') {
-            if ($result->as_string =~ /^#\s*selftests:\s+/) {
+            if ($result->as_string =~ SELFTESTS_GROUP_COMMENT_RE) {
                 $self->_testgroup_init($result->as_string);
                 next;
             }
             $self->_parse_subtest($result);
             next;
         }
-        if ($result->type eq 'test' && $result->description =~ /^selftests: /) {
+        if ($result->type eq 'test' && $result->description =~ SELFTESTS_GROUP_SUMMARY_RE) {
             $self->_testgroup_finalize($result);
             next;
         }

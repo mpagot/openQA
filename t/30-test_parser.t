@@ -970,7 +970,7 @@ subtest ktap_parse => sub {
     is $parser->results->size, 5, 'Expected five test groups';
 
     my $result0 = $parser->results->get(0);
-    is $result0->{name}, 'selftests:cgroup:test_core', 'The first test group has expected name';
+    is $result0->{name}, 'test_core', 'The first test group has expected name';
 
     is $result0->result, 'passed', 'Group result is passed';
     is scalar @{$result0->details}, 12, 'Has 12 subtest details';
@@ -996,7 +996,7 @@ subtest 'ktap_parse_incorrect_file' => sub {
     is $parser->results->size, 3, 'Three test groups parsed (last one missing the final summary line)';
 
     my $last = $parser->results->get(2);
-    is $last->{name}, 'selftests:cgroup:test_zswap', 'Last test group name is correct';
+    is $last->{name}, 'test_zswap', 'Last test group name is correct';
     is scalar @{$last->details}, 7, 'Last group has 7 subtests';
     is $last->details->[0]->{title}, 'test_zswap_usage', 'First subtest parsed correctly';
     is $last->details->[-1]->{title}, 'test_no_invasive_cgroup_shrink', 'Last subtest parsed';
@@ -1019,6 +1019,40 @@ subtest 'ktap_with_todo' => sub {
     is $group2->result, 'softfail';
     is $group2->details->[0]{result}, 'ok';
     is $group2->details->[1]{result}, 'ok';
+};
+
+subtest 'ktap ignores inner selftest status comments' => sub {
+    my $ktap = <<'EOF';
+TAP version 13
+1..3
+# selftests: bpf: test_xdp_redirect.sh
+# timeout set to 0
+# selftests: test_xdp_redirect xdpgeneric [PASS]
+# selftests: test_xdp_redirect xdpdrv [PASS]
+ok 1 selftests: bpf: test_xdp_redirect.sh
+# selftests: bpf: test_lwt_seg6local.sh
+# timeout set to 0
+# selftests: test_lwt_seg6local [PASS]
+ok 2 selftests: bpf: test_lwt_seg6local.sh
+# selftests: bpf: test_flow_dissector.sh
+# timeout set to 0
+# selftests: test_flow_dissector: ipv6 [FAILED]
+# selftests: test_flow_dissector [FAILED]
+not ok 3 selftests: bpf: test_flow_dissector.sh # exit=1
+EOF
+
+    my $p = OpenQA::Parser::Format::KTAP->new;
+    $p->parse($ktap);
+
+    is $p->results->size, 3, 'inner status comments do not create extra groups';
+    is_deeply [map { $p->results->get($_)->{name} } 0 .. 2],
+      [qw(test_xdp_redirect_sh test_lwt_seg6local_sh test_flow_dissector_sh)],
+      'group names use only sanitized test names';
+    is $p->results->get(0)->result, 'passed', 'first group passed';
+    is $p->results->get(1)->result, 'passed', 'second group passed';
+    is $p->results->get(2)->result, 'fail', 'failed summary still fails the group';
+    unlike $_->{name}, qr/\[(?:PASS|FAILED)\]/, 'status comment is not used as a group name'
+      for @{$p->results->to_array};
 };
 
 done_testing;
